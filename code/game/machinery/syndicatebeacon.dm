@@ -72,17 +72,17 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		to_chat(user, "<span class='warning'>You need to screw the beacon to the floor first!</span>")
+		to_chat(user, "<span class='warning'>You need to wrench the beacon to the floor first!</span>")
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	if(W.tool_behaviour == TOOL_WRENCH)
 		if(active)
 			to_chat(user, "<span class='warning'>You need to deactivate the beacon first!</span>")
 			return
 
 		if(anchored)
 			setAnchored(FALSE)
-			to_chat(user, "<span class='notice'>You unscrew the beacon from the floor.</span>")
+			to_chat(user, "<span class='notice'>You unwrench the beacon from the floor.</span>")
 			disconnect_from_network()
 			return
 		else
@@ -90,7 +90,7 @@ GLOBAL_VAR_INIT(singularity_counter, 0)
 				to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
 				return
 			setAnchored(TRUE)
-			to_chat(user, "<span class='notice'>You screw the beacon to the floor and attach the cable.</span>")
+			to_chat(user, "<span class='notice'>You wrench the beacon to the floor and attach the cable. Remember to turn it on.</span>")
 			return
 	else
 		return ..()
