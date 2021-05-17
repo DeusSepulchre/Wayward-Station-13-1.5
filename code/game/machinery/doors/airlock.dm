@@ -657,6 +657,8 @@
 		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
 	if(charge && panel_open)
 		. += "<span class='warning'>Something is wired up to the airlock's electronics!</span>"
+	if(force_entered)
+		. += "<span class='warning'>There are signs of forced entry where the halves meet, dents and scratches in the airlock's metal.</span>"
 	if(note)
 		if(!in_range(user, src))
 			. += "There's a [note.name] pinned to the front. You can't read it from here."
@@ -1022,6 +1024,7 @@
 								"<span class='italics'>You hear welding.</span>")
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
 					obj_integrity = max_integrity
+					force_entered = FALSE
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
@@ -1097,6 +1100,7 @@
 			prying_so_hard = TRUE
 			if(do_after(user, time_to_open,target = src))
 				open(2)
+				force_entered = TRUE
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 			prying_so_hard = FALSE
