@@ -77,8 +77,11 @@
 		return
 	if(!iscarbon(target))
 		return
+	if(!(target?.client?.prefs?.cit_toggles & MEDIHOUND_SLEEPER))
+		to_chat(user, "<span class='warning'>The user has opted out of the use of your [src].")
+		return
 	var/voracious = TRUE
-	if(!target.client || !(target.client.prefs.cit_toggles & MEDIHOUND_SLEEPER) || !hound.client || !(hound.client.prefs.cit_toggles & MEDIHOUND_SLEEPER))
+	if(!hound.client || !(hound.client.prefs.cit_toggles & MEDIHOUND_SLEEPER))
 		voracious = FALSE
 	if(target.buckled)
 		to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src].</span>")
@@ -169,7 +172,7 @@
 /obj/item/dogborg/sleeper/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "dogborg_sleeper", name, 375, 550) //UI DOES NOT EXIST
+		ui = new(user, src, "Sleeper", name)
 		ui.open()
 
 /obj/item/dogborg/sleeper/ui_data()

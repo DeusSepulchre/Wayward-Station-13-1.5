@@ -96,6 +96,10 @@ Class Procs:
 	flags_ricochet = RICOCHET_HARD
 	ricochet_chance_mod = 0.3
 
+	explosion_flags = EXPLOSION_FLAG_DENSITY_DEPENDENT
+	wave_explosion_block = EXPLOSION_BLOCK_MACHINE
+	wave_explosion_multiply = EXPLOSION_DAMPEN_MACHINE
+
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 
@@ -144,11 +148,15 @@ Class Procs:
 		START_PROCESSING(SSmachines, src)
 	else
 		START_PROCESSING(SSfastprocess, src)
-	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
 
 	if (occupant_typecache)
 		occupant_typecache = typecacheof(occupant_typecache)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/LateInitialize()
+	. = ..()
+	power_change()
 
 /obj/machinery/Destroy()
 	GLOB.machines.Remove(src)
@@ -171,6 +179,17 @@ Class Procs:
 
 /obj/machinery/proc/process_atmos()//If you dont use process why are you here
 	return PROCESS_KILL
+
+///Called when we want to change the value of the stat variable. Holds bitflags.
+/obj/machinery/proc/set_machine_stat(new_value)
+	if(new_value == stat)
+		return
+	. = stat
+	stat = new_value
+	on_machine_stat_update(stat)
+
+/obj/machinery/proc/on_machine_stat_update(stat)
+	return
 
 /obj/machinery/emp_act(severity)
 	. = ..()
@@ -379,8 +398,11 @@ Class Procs:
 	M.icon_state = "box_1"
 
 /obj/machinery/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	. = ..()
+	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
+		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
+		update_appearance()
 		return TRUE
 
 /obj/machinery/contents_explosion(severity, target)
@@ -519,6 +541,8 @@ Class Procs:
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
+	for(var/obj/I in contents)
+		I.moveToNullspace()
 	return
 
 //called on deconstruction before the final deletion
@@ -558,3 +582,14 @@ Class Procs:
 
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, "melee", 1)
+
+/**
+ * Alerts the AI that a hack is in progress.
+ *
+ * Sends all AIs a message that a hack is occurring.  Specifically used for space ninja tampering as this proc was originally in the ninja files.
+ * However, the proc may also be used elsewhere.
+ */
+/obj/machinery/proc/AI_notify_hack()
+	var/alertstr = "<span class='userdanger'>Network Alert: Hacking attempt detected[get_area(src)?" in [get_area_name(src, TRUE)]":". Unable to pinpoint location"].</span>"
+	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
+		to_chat(AI, alertstr)

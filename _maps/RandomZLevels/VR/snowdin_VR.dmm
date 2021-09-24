@@ -651,7 +651,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Dorms APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -814,7 +814,7 @@
 	dir = 1;
 	name = "Kitchen APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -1863,7 +1863,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Gateway APC";
-	pixel_y = -24;
+	pixel_y = -23;
 	req_access = 150
 	},
 /obj/structure/cable/yellow{
@@ -1880,7 +1880,7 @@
 	dir = 1;
 	name = "Research Center APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1909,7 +1909,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mess Hall APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -2514,7 +2514,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Outpost Hallway APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -2700,15 +2700,15 @@
 /area/awaymission/snowdin/outside)
 "gc" = (
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "gd" = (
 /obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "ge" = (
@@ -2718,8 +2718,8 @@
 /obj/structure/closet/crate/wooden,
 /obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "gg" = (
@@ -3057,7 +3057,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Garage APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -3077,15 +3077,15 @@
 "gU" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "gV" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "gW" = (
@@ -3403,8 +3403,8 @@
 "hF" = (
 /obj/structure/destructible/cult/pylon,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "hG" = (
@@ -3669,8 +3669,8 @@
 /obj/structure/closet/crate/wooden,
 /obj/effect/spawner/lootdrop/snowdin/dungeonmid,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "im" = (
@@ -3679,8 +3679,8 @@
 	max_mobs = 5
 	},
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "in" = (
@@ -3689,8 +3689,8 @@
 	name = "Caleb Reed"
 	},
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "io" = (
@@ -4490,8 +4490,8 @@
 	name = "Jacob Ullman"
 	},
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "jP" = (
@@ -4835,7 +4835,7 @@
 	dir = 1;
 	name = "Custodials APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -5585,8 +5585,8 @@
 /obj/structure/closet/crate/wooden,
 /obj/effect/spawner/lootdrop/snowdin/dungeonlite,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "lU" = (
@@ -6262,7 +6262,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Engineering APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6567,7 +6567,7 @@
 	dir = 1;
 	name = "Security Outpost APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -6764,7 +6764,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Hydroponics APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -7478,8 +7478,8 @@
 "qg" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
-	temperature = 120
+	initial_gas_mix = "n2=82;plasma=24;TEMP=120";
+	initial_temperature = 120
 	},
 /area/awaymission/snowdin/cave/cavern)
 "qh" = (
@@ -8297,7 +8297,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Main Outpost APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
@@ -8987,7 +8987,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -10004,7 +10004,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Main Outpost APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -11761,7 +11761,7 @@
 	dir = 1;
 	name = "Recon Post APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -13150,7 +13150,7 @@
 /turf/open/floor/mineral/plastitanium{
 	initial_gas_mix = "o2=22;n2=82;TEMP=180";
 	planetary_atmos = 1;
-	temperature = 180
+	initial_temperature = 180
 	},
 /area/awaymission/snowdin/cave)
 "EF" = (
@@ -13162,7 +13162,7 @@
 /turf/open/floor/mineral/plastitanium{
 	initial_gas_mix = "o2=22;n2=82;TEMP=180";
 	planetary_atmos = 1;
-	temperature = 180
+	initial_temperature = 180
 	},
 /area/awaymission/snowdin/cave)
 "EG" = (
@@ -13176,7 +13176,7 @@
 /turf/open/floor/mineral/plastitanium{
 	initial_gas_mix = "o2=22;n2=82;TEMP=180";
 	planetary_atmos = 1;
-	temperature = 180
+	initial_temperature = 180
 	},
 /area/awaymission/snowdin/cave)
 "EH" = (
@@ -14142,7 +14142,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Robotics APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -14652,7 +14652,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -14666,7 +14666,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mechbay APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -15419,7 +15419,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Post APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"

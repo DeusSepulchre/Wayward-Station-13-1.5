@@ -7,6 +7,9 @@
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,WINGCOLOR,HAS_FLESH)
 	mutantlungs = /obj/item/organ/lungs/slime
 	mutant_heart = /obj/item/organ/heart/slime
+	mutantstomach = /obj/item/organ/stomach/slime
+	mutantliver = /obj/item/organ/liver/slime
+	mutant_brain = /obj/item/organ/brain/slime
 	mutant_bodyparts = list("mcolor" = "FFFFFF", "mam_tail" = "None", "mam_ears" = "None", "mam_snouts" = "None", "taur" = "None", "deco_wings" = "None", "legs" = "Plantigrade")
 	inherent_traits = list(TRAIT_TOXINLOVER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
@@ -22,17 +25,11 @@
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
 	species_language_holder = /datum/language_holder/jelly
-	mutant_brain = /obj/item/organ/brain/jelly
 
 	tail_type = "mam_tail"
 	wagging_type = "mam_waggingtail"
 	species_category = SPECIES_CATEGORY_JELLY
 	ass_image = 'icons/ass/assslime.png'
-
-/obj/item/organ/brain/jelly
-	name = "slime nucleus"
-	desc = "A slimey membranous mass from a slime person"
-	icon_state = "brain-slime"
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	C.faction -= "slime"
@@ -56,16 +53,16 @@
 	exotic_blood_color = "#" + H.dna.features["mcolor"]
 
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || HAS_TRAIT(H, TRAIT_NOMARROW)) //can't farm slime jelly from a dead slime/jelly person indefinitely, and no regeneration for blooduskers
+	if(H.stat == DEAD || HAS_TRAIT(H, TRAIT_NOMARROW)) //can't farm slime jelly from a dead slime/jelly person indefinitely, and no regeneration for bloodsuckers
 		return
 	if(!H.blood_volume)
-		H.blood_volume += 5
+		H.adjust_integration_blood(5)
 		H.adjustBruteLoss(5)
 		to_chat(H, "<span class='danger'>You feel empty!</span>")
 
 	if(H.blood_volume < (BLOOD_VOLUME_NORMAL * H.blood_ratio))
 		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
-			H.blood_volume += 3
+			H.adjust_integration_blood(3)
 			H.nutrition -= 2.5
 	if(H.blood_volume < (BLOOD_VOLUME_OKAY*H.blood_ratio))
 		if(prob(5))
@@ -85,7 +82,7 @@
 	consumed_limb.drop_limb()
 	to_chat(H, "<span class='userdanger'>Your [consumed_limb] is drawn back into your body, unable to maintain its shape!</span>")
 	qdel(consumed_limb)
-	H.blood_volume += 20
+	H.adjust_integration_blood(20)
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
@@ -154,7 +151,7 @@
 		if(prob(5))
 			to_chat(H, "<span class='notice'>You feel very bloated!</span>")
 	else if(H.nutrition >= NUTRITION_LEVEL_WELL_FED)
-		H.blood_volume += 3
+		H.adjust_integration_blood(3)
 		H.nutrition -= 2.5
 
 	..()
@@ -508,7 +505,7 @@
 		button_icon_state = "slimeeject"
 	..()
 
-/datum/action/innate/integrate_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/integrate_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
@@ -562,7 +559,7 @@
 			return TRUE
 		return FALSE
 
-/datum/action/innate/use_extract/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+/datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))

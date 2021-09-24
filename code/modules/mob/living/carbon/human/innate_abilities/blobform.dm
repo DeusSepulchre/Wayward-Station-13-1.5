@@ -47,6 +47,7 @@
 				owner.cut_overlays() //we dont show our normal sprite, we show a puddle sprite
 				var/obj/effect/puddle_effect = new puddle_into_effect(get_turf(owner), owner.dir)
 				puddle_effect.color = mutcolor
+				puddle_effect.transform = H.transform //copy mob size for consistent meltdown appearance
 				H.Stun(in_transformation_duration, ignore_canstun = TRUE) //cant move while transforming
 
 				//series of traits that make up the puddle behaviour
@@ -55,7 +56,6 @@
 				ADD_TRAIT(H, TRAIT_MOBILITY_NOPICKUP, SLIMEPUDDLE_TRAIT)
 				ADD_TRAIT(H, TRAIT_MOBILITY_NOUSE, SLIMEPUDDLE_TRAIT)
 				ADD_TRAIT(H, TRAIT_SPRINT_LOCKED, SLIMEPUDDLE_TRAIT)
-				ADD_TRAIT(H, TRAIT_COMBAT_MODE_LOCKED, SLIMEPUDDLE_TRAIT)
 				ADD_TRAIT(H, TRAIT_MOBILITY_NOREST, SLIMEPUDDLE_TRAIT)
 				ADD_TRAIT(H, TRAIT_ARMOR_BROKEN, SLIMEPUDDLE_TRAIT)
 				H.update_disabled_bodyparts(silent = TRUE)	//silently update arms to be paralysed
@@ -75,6 +75,7 @@
 				puddle_overlay.color = mutcolor
 				tracked_overlay = puddle_overlay
 				owner.add_overlay(puddle_overlay)
+				owner.update_antag_overlays()
 
 				transforming = FALSE
 				UpdateButtonIcon()
@@ -89,6 +90,7 @@
 	H.cut_overlay(tracked_overlay)
 	var/obj/effect/puddle_effect = new puddle_from_effect(get_turf(owner), owner.dir)
 	puddle_effect.color = tracked_overlay.color
+	puddle_effect.transform = H.transform //copy mob size for consistent transform size
 	H.Stun(out_transformation_duration, ignore_canstun = TRUE)
 	sleep(out_transformation_duration)
 	REMOVE_TRAIT(H, TRAIT_PARALYSIS_L_ARM, SLIMEPUDDLE_TRAIT)
@@ -96,7 +98,6 @@
 	REMOVE_TRAIT(H, TRAIT_MOBILITY_NOPICKUP, SLIMEPUDDLE_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_MOBILITY_NOUSE, SLIMEPUDDLE_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_SPRINT_LOCKED, SLIMEPUDDLE_TRAIT)
-	REMOVE_TRAIT(H, TRAIT_COMBAT_MODE_LOCKED, SLIMEPUDDLE_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_MOBILITY_NOREST, SLIMEPUDDLE_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_ARMOR_BROKEN, SLIMEPUDDLE_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_HUMAN_NO_RENDER, SLIMEPUDDLE_TRAIT)
@@ -106,5 +107,6 @@
 	is_puddle = FALSE
 	if(squeak)
 		squeak.RemoveComponent()
+	H.regenerate_icons()
 	transforming = FALSE
 	UpdateButtonIcon()

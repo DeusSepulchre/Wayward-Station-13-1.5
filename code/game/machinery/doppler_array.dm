@@ -114,6 +114,44 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		LAZYADD(message_log, messages.Join(" "))
 	return TRUE
 
+/obj/machinery/doppler_array/proc/sense_wave_explosion(turf/epicenter, power, speed)
+	if(stat & NOPOWER)
+		return FALSE
+	var/turf/zone = get_turf(src)
+	if(zone.z != epicenter.z)
+		return FALSE
+
+	if(next_announce > world.time)
+		return FALSE
+	next_announce = world.time + cooldown
+
+	var/distance = get_dist(epicenter, zone)
+	var/direct = get_dir(zone, epicenter)
+
+	if(distance > max_dist)
+		return FALSE
+	if(!(direct & dir) && !integrated)
+		return FALSE
+
+
+	var/list/messages = list("Explosive shockwave detected.", \
+							 "Epicenter at: grid ([epicenter.x],[epicenter.y]). Shockwave expanding at a theoretical speed of [speed] m/s.", \
+							 "Wave energy: [power]MJ.")
+
+	if(integrated)
+		var/obj/item/clothing/head/helmet/space/hardsuit/helm = loc
+		if(!helm || !istype(helm, /obj/item/clothing/head/helmet/space/hardsuit))
+			return FALSE
+		helm.display_visor_message("Waveform explosion detected! Wave energy: [power]MJ.")
+	else
+		for(var/message in messages)
+			say(message)
+		if(LAZYLEN(message_log) > list_limit)
+			say("Storage buffer is full! Clearing buffers...")
+			LAZYCLEARLIST(message_log)
+		LAZYADD(message_log, messages.Join(" "))
+	return TRUE
+
 /obj/machinery/doppler_array/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Its dish is facing to the [dir2text(dir)].</span>"
@@ -159,10 +197,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(orig_light < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light < 4500)
-		point_gain = (83300 * orig_light) / (orig_light + 3000)
 	else
-		point_gain = TECHWEB_BOMB_POINTCAP
+		point_gain = (100000 * orig_light) / (orig_light + 5000)
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)

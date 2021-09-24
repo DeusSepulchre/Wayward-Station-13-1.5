@@ -64,8 +64,9 @@
 #define GAS_PIPE_VISIBLE_LAYER 2.47
 #define GAS_FILTER_LAYER 2.48
 #define GAS_PUMP_LAYER 2.49
-
 #define LOW_OBJ_LAYER 2.5
+///catwalk overlay of /turf/open/floor/plating/plating_catwalk
+#define CATWALK_LAYER 2.51
 #define LOW_SIGIL_LAYER 2.52
 #define SIGIL_LAYER 2.54
 #define HIGH_SIGIL_LAYER 2.56
@@ -77,6 +78,7 @@
 #define PROJECTILE_HIT_THRESHHOLD_LAYER 2.75 //projectiles won't hit objects at or below this layer if possible
 #define TABLE_LAYER 2.8
 #define TRAY_LAYER 2.85
+#define GATEWAY_UNDERLAY_LAYER 2.85
 #define BELOW_OBJ_LAYER 2.9
 #define LOW_ITEM_LAYER 2.95
 //#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
@@ -123,15 +125,19 @@
 
 #define EMISSIVE_PLANE 13
 #define EMISSIVE_LAYER 13
-#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 
 #define EMISSIVE_UNBLOCKABLE_PLANE 14
 #define EMISSIVE_UNBLOCKABLE_LAYER 14
+#define EMISSIVE_LAYER_UNBLOCKABLE 14
 #define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 
 #define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15
 #define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
+
+#define O_LIGHTING_VISUAL_PLANE 110
+#define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
 #define RAD_TEXT_LAYER 15.1
 

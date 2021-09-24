@@ -38,6 +38,10 @@
 	reagents.add_reagent(/datum/reagent/foaming_agent, 5)
 	reagents.add_reagent(/datum/reagent/toxin/acid, 5)
 
+/obj/item/projectile/bullet/dart/catranq/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/fermi/furranium, 5) // Turns out I don't even need to give this guy actual tranquilizer chems.
+
 /obj/item/projectile/bullet/dart/syringe
 	name = "syringe"
 	icon_state = "syringeproj"
@@ -56,6 +60,8 @@
 			if(M.can_inject(null, FALSE, def_zone, piercing)) // Pass the hit zone to see if it can inject by whether it hit the head or the body.
 				..(target, blocked, TRUE)
 				for(var/datum/reagent/medicine/R in reagents.reagent_list) //OD prevention time!
+					if(R.type in GLOB.blacklisted_medchems)
+						continue
 					if(M.reagents.has_reagent(R.type))
 						if(R.overdose_threshold == 0 || emptrig == TRUE) //Is there a possible OD?
 							M.reagents.add_reagent(R.type, R.volume)

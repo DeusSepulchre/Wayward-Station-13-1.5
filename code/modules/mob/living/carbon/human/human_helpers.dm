@@ -176,3 +176,14 @@
 
 /mob/living/carbon/human/get_biological_state()
 	return dna.species.get_biological_state()
+
+///copies over clothing preferences like underwear to another human
+/mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
+	destination.underwear = underwear
+	destination.undershirt = undershirt
+	destination.socks = socks
+
+/mob/living/carbon/human/adjust_integration_blood(value, force)
+	if(NOBLOOD in dna.species.species_traits) //Can't lose blood if your species doesn't have any
+		return
+	. = ..()

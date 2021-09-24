@@ -195,7 +195,7 @@
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
 			Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
-	item = /obj/item/reagent_containers/hypospray/magillitis
+	item = /obj/item/reagent_containers/hypospray/medipen/magillitis
 	cost = 8
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
@@ -208,9 +208,10 @@
 
 /datum/uplink_item/role_restricted/chemical_gun
 	name = "Reagent Dartgun"
-	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 100u of reagents."
+	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. \
+			Synthesizes one piercing 10 unit dart every 30 seconds up to a maximum of five. Can hold 100u of reagents."
 	item = /obj/item/gun/chem
-	cost = 12
+	cost = 10
 	restricted_roles = list("Chemist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
@@ -257,4 +258,4 @@
 	item = /obj/item/storage/toolbox/emergency/turret
 	cost = 11
 	restricted_roles = list("Station Engineer")
-	
+
